@@ -28,6 +28,9 @@ app.post("/login", (req, res) => {
          credentials: "include",
     }).status(200).json(req.body);
 });
+app.get('verify',(req, res)=>{
+    res.send(req.cookies)
+})
 app.get("/", (req, res) => {
     res.send("hello");
 });
