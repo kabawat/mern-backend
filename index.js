@@ -29,8 +29,7 @@ app.post("/login", (req, res) => {
     }).status(200).json(req.body);
 });
 app.get('/verify',(req, res)=>{
-    const token =  req.cookies.auth
-    console.log(token)
+    const token =  "login"
     res.send({
         token,
         state: 'successs'
