@@ -27,7 +27,8 @@ app.post("/login", (req, res) => {
         sameSite: 'None',
         secure: true,
         withCredentials: true,
-         credentials: "include",
+        credentials: "include",
+        path: '/'
     }).status(200).json(req.body);
 });
 app.get('/verify',(req, res)=>{
