@@ -28,7 +28,7 @@ app.post("/login", (req, res) => {
         secure: true,
         withCredentials: true,
         credentials: "include",
-        path: '/'
+        expires: new Date(Date.now() + 9000000)
     }).status(200).json(req.body);
 });
 app.get('/verify',(req, res)=>{
