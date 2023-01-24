@@ -19,7 +19,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.post("/login", (req, res) => {
-    res.cookie('myCookie', 'myValue', {
+    res.cookie('auth', 'myValue', {
         maxAge: 9000000,
         httpOnly: true,
         sameSite: 'None',
@@ -29,7 +29,12 @@ app.post("/login", (req, res) => {
     }).status(200).json(req.body);
 });
 app.get('/verify',(req, res)=>{
-    res.send(req.cookies)
+    const token =  req.cookies.auth
+    console.log(token)
+    res.send({
+        token,
+        state: 'successs'
+    })
 })
 app.get("/", (req, res) => {
     res.send("hello");
