@@ -8,18 +8,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
-    origin: [
-        "http://localhost:3000",
-        "https://cookietrytwot.netlify.app",
-        "http://your-frontend-url.com"
-    ],
+    origin: "http://localhost:3000",
     credentials: true,
     exposedHeaders: ["set-cookie"],
     withCredentials: true
 };
 
-
 app.use(cors(corsOptions));
+app.use(cookieParser())
 app.post("/login", (req, res) => {
     res.cookie('auth', 'myValue', {
         maxAge: 9000000,
@@ -27,9 +23,7 @@ app.post("/login", (req, res) => {
         sameSite: 'None',
         secure: true,
         withCredentials: true,
-        credentials: "include",
-        expires: new Date(Date.now() + 9000000)
-    }).status(200).json(req.body);
+    }).set("Access-Control-Allow-Credentials", "true").status(200).json(req.body);
 });
 app.get('/verify',(req, res)=>{
     const token =  "login"
@@ -41,7 +35,6 @@ app.get('/verify',(req, res)=>{
 app.get("/", (req, res) => {
     res.send("hello");
 });
-app.use(cookieParser())
 app.listen(port, () => {
     console.log(`http://192.168.0.5:${port}`);
-});
+})
