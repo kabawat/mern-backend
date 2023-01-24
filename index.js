@@ -14,6 +14,7 @@ const corsOptions = {
     ],
     credentials: true,
     exposedHeaders: ["set-cookie"],
+    withCredentials: true
 };
 
 app.use(cors(corsOptions));
@@ -22,7 +23,9 @@ app.post("/login", (req, res) => {
         maxAge: 9000000,
         httpOnly: true,
         sameSite: 'None',
-        secure: true
+        secure: true,
+        withCredentials: true,
+         credentials: "include",
     });
     res.status(200).json(req.body);
 });
