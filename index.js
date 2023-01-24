@@ -12,7 +12,7 @@ const corsOptions = {
         "http://localhost:3000",
         "https://cookietrytwot.netlify.app"
     ],
-    credentials: true,
+    credentials: "include",
     exposedHeaders: ["set-cookie"],
     withCredentials: true
 };
@@ -26,8 +26,7 @@ app.post("/login", (req, res) => {
         secure: true,
         withCredentials: true,
          credentials: "include",
-    });
-    res.status(200).json(req.body);
+    }).status(200).json(req.body);
 });
 app.get("/", (req, res) => {
     res.send("hello");
