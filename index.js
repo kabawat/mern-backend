@@ -12,7 +12,7 @@ const corsOptions = {
         "http://localhost:3000",
         "https://cookietrytwot.netlify.app"
     ],
-    credentials: "include",
+    credentials: true,
     exposedHeaders: ["set-cookie"],
     withCredentials: true
 };
