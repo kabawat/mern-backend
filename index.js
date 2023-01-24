@@ -10,12 +10,14 @@ app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
     origin: [
         "http://localhost:3000",
-        "https://cookietrytwot.netlify.app"
+        "https://cookietrytwot.netlify.app",
+        "http://your-frontend-url.com"
     ],
     credentials: true,
     exposedHeaders: ["set-cookie"],
     withCredentials: true
 };
+
 
 app.use(cors(corsOptions));
 app.post("/login", (req, res) => {
