@@ -32,7 +32,7 @@ app.post('/login', (req, res) => {
 })
 app.get('/verify', (req, res) => {
     try {
-        const tokenStr = req.cookies
+        const tokenStr = req
         const token = tokenStr.split('=')
 
         // if (token) {
