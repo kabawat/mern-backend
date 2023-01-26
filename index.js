@@ -3,7 +3,7 @@ const app = express()
 const cookies = require('cookie-parser')
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
-const port = process.env.PORT || 2917
+const port = process.env.PORT||2917
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const corsOptions = {
@@ -12,11 +12,11 @@ const corsOptions = {
         "http://localhost:3001",
         "http://localhost:3002",
     ],
-     credentials: true,
+    credentials: true,
     exposedHeaders: ["set-cookie"],
 };
 app.use(cors(corsOptions))
-app.use(cookieParser())
+
 app.get('/', (req, res) => {
     res.send('cookie')
 })
