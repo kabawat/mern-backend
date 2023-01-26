@@ -13,6 +13,7 @@ const corsOptions = {
         "http://localhost:3002",
     ],
     credentials: true,
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
     exposedHeaders: ["set-cookie"],
 };
 app.use(cors(corsOptions))
@@ -31,21 +32,21 @@ app.post('/login', (req, res) => {
 })
 app.get('/verify', (req, res) => {
     try {
-        const tokenStr = req.cookies.token
+        const tokenStr = req.cookies
         const token = tokenStr.split('=')
 
-        if (token) {
-            console.log(token[1]);
-            const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
-            res.send({
-                data,
-                status: true
-            })
-        } else {
-            throw {
-                error: "token not found"
-            }
-        }
+        // if (token) {
+        //     console.log(token[1]);
+        //     const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
+        res.send({
+            data: tokenStr,
+            status: true
+        })
+        // } else {
+        //     throw {
+        //         error: "token not found"
+        //     }
+        // }
     } catch (error) {
         res.send({
             error,
