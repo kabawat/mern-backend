@@ -1,7 +1,9 @@
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 2917;
-const cors = require("cors");
+const express = require('express')
+const app = express()
+const cookies = require('cookie-parser')
+const jwt = require('jsonwebtoken')
+const cors = require('cors')
+const port = process.env.PORT || 2917
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const corsOptions = {
@@ -36,6 +38,7 @@ app.get('/verify', (req, res) => {
         data
     })
 })
+
 app.listen(port, () => {
-    console.log(`http://192.168.0.5:${port}`);
+    console.log(`http://localhost:${port}`);
 })
