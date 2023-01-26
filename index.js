@@ -36,9 +36,6 @@ app.get('/verify', (req, res) => {
         data
     })
 })
-app.get("/", (req, res) => {
-    res.send("hello");
-});
 app.listen(port, () => {
     console.log(`http://192.168.0.5:${port}`);
 })
