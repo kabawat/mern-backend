@@ -31,7 +31,7 @@ app.post('/login', (req, res) => {
 })
 app.get('/verify', (req, res) => {
     try {
-        const tokenStr = req.headers.cookie
+        const tokenStr = req.cookies.token
         const token = tokenStr.split('=')
 
         if (token) {
