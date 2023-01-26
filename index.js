@@ -3,7 +3,7 @@ const app = express()
 const cookies = require('cookie-parser')
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
-const port = process.env.PORT||2917
+const port = process.env.PORT || 2917
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const corsOptions = {
@@ -30,13 +30,23 @@ app.post('/login', (req, res) => {
     })
 })
 app.get('/verify', (req, res) => {
-    const tokenStr = req.headers.cookie
-    const token = tokenStr.split('=')
-    console.log(token[1]);
-    const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
-    res.send({
-        data
-    })
+    try {
+        const tokenStr = req.headers.cookie
+        const token = tokenStr.split('=')
+        if (token) {
+            console.log(token[1]);
+            const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
+            res.send({
+                data
+            })
+        } else {
+            throw {
+                error: "token not found"
+            }
+        }
+    } catch (error) {
+        res.send(error)
+    }
 })
 
 app.listen(port, () => {
