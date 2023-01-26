@@ -32,7 +32,7 @@ app.post('/login', (req, res) => {
 })
 app.get('/verify', (req, res) => {
     try {
-        const tokenStr = req.headers
+        const tokenStr = req.header
         console.log(tokenStr);
         // const token = tokenStr.split('=')
         // const data = JSON.toString(tokenStr)
