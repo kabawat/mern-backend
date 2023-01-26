@@ -2,34 +2,38 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 2917;
 const cors = require("cors");
-const cookieParser = require('cookie-parser')
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: [
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:3002",
+    ],
     credentials: true,
     exposedHeaders: ["set-cookie"],
-    withCredentials: true
 };
+app.use(cors(corsOptions))
 
-app.use(cors(corsOptions));
-app.use(cookieParser())
-app.post("/login", (req, res) => {
-    res.cookie('auth', 'myValue', {
-        maxAge: 9000000,
-        httpOnly: true,
-        sameSite: 'None',
-        secure: true,
-        withCredentials: true,
-    }).set("Access-Control-Allow-Credentials", "true").status(200).json(req.body);
-});
-app.get('/verify',(req, res)=>{
-    const token =  "login"
+app.get('/', (req, res) => {
+    res.send('cookie')
+})
+
+app.post('/login', (req, res) => {
+    const token = jwt.sign(req.body, "Mukeshsinghkabawat@038403489384")
     res.send({
         token,
-        state: 'successs'
+        status: true,
+        data: req.body
+    })
+})
+app.get('/verify', (req, res) => {
+    const tokenStr = req.headers.cookie
+    const token = tokenStr.split('=')
+    console.log(token[1]);
+    const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
+    res.send({
+        data
     })
 })
 app.get("/", (req, res) => {
