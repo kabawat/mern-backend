@@ -18,7 +18,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.get('/', (req, res) => {
-    res.send('set cookies')
+    res.send('set cookie')
 })
 
 app.post('/login', (req, res) => {
@@ -33,6 +33,7 @@ app.get('/verify', (req, res) => {
     try {
         const tokenStr = req.headers.cookie
         const token = tokenStr.split('=')
+
         if (token) {
             console.log(token[1]);
             const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
