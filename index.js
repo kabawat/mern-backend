@@ -14,10 +14,9 @@ const corsOptions = {
     ],
      credentials: true,
     exposedHeaders: ["set-cookie"],
-    withCredentials: true
 };
 app.use(cors(corsOptions))
-
+app.use(cookieParser())
 app.get('/', (req, res) => {
     res.send('cookie')
 })
