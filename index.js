@@ -37,7 +37,8 @@ app.get('/verify', (req, res) => {
             console.log(token[1]);
             const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
             res.send({
-                data
+                data,
+                status : true
             })
         } else {
             throw {
