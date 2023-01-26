@@ -34,12 +34,12 @@ app.get('/verify', (req, res) => {
     try {
         const tokenStr = req
         // const token = tokenStr.split('=')
-
+        const data = JSON.toString(req)
         // if (token) {
         //     console.log(token[1]);
         //     const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
         res.send({
-            data: tokenStr,
+            data,
             status: true
         })
         // } else {
