@@ -12,8 +12,9 @@ const corsOptions = {
         "http://localhost:3001",
         "http://localhost:3002",
     ],
-    credentials: true,
+     credentials: true,
     exposedHeaders: ["set-cookie"],
+    withCredentials: true
 };
 app.use(cors(corsOptions))
 
