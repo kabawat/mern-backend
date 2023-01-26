@@ -18,7 +18,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.get('/', (req, res) => {
-    res.send('cookie')
+    res.send('set cookies')
 })
 
 app.post('/login', (req, res) => {
@@ -38,7 +38,7 @@ app.get('/verify', (req, res) => {
             const data = jwt.verify(token[1], "Mukeshsinghkabawat@038403489384")
             res.send({
                 data,
-                status : true
+                status: true
             })
         } else {
             throw {
@@ -46,7 +46,10 @@ app.get('/verify', (req, res) => {
             }
         }
     } catch (error) {
-        res.send(error)
+        res.send({
+            error,
+            status: false
+        })
     }
 })
 
